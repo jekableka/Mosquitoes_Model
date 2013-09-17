@@ -11,6 +11,19 @@ rm(list=ls())
 
 set.seed(1)
 
+#######################
+## Table of Parameters
+#######################
+
+parameters.table <- matrix(0,nrow=30,ncol=6)
+parameters.table[,1] <- runif(30,13,32) ## temperature in Celsius
+parameters.table[,2] <- parameters.table[,1] + 274.5 ## temperature in Kelvin
+parameters.table[,3] <- runif(30,0,2) ## water level value
+parameters.table[,4][parameters.table[,1] < 13] <- .97
+parameters.table[,4][parameters.table[,1] >=13 & parameters.table[,1] <19] <- 54.259*exp(-.3114*parameters.table[,1])
+parameters.table[,4][parameters.table[,1] >=19 & parameters.table[,1] <30] <- 0.22
+parameters.table[,4][parameters.table[,1] >=30 & parameters.table[,1] <50 ] <- 0.0876*parameters.table[,1]
+
 ##########################################
 ## Mean Daily temperatures
 ##########################################
@@ -75,6 +88,8 @@ if(water.2 >water.threshold) {
   v.egg.2 <- (1/ l.e.1)
 } else {
   v.egg.2 <- 0}
+
+mosquitoes <- ()
 
 
 
